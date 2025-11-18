@@ -1,0 +1,15 @@
+includes:
+    - phpstan-baseline.neon
+    - vendor/larastan/larastan/extension.neon
+
+parameters:
+    level: 4
+    paths:
+        - src
+        - config
+    tmpDir: build/phpstan
+    checkOctaneCompatibility: true
+    checkModelProperties: true
+    ignoreErrors:
+        - '#Access to an undefined property Elemind\\FilamentECharts\\Widgets\\EChartWidget::\$form.#'
+

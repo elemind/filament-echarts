@@ -1,0 +1,78 @@
+{
+    "name": "elemind/filament-echarts",
+    "description": "Apache ECharts integration for Filament",
+    "keywords": [
+        "elemind",
+        "laravel",
+        "filamentphp",
+        "filament-echarts"
+    ],
+    "homepage": "https://github.com/elemind/filament-echarts",
+    "support": {
+        "issues": "https://github.com/elemind/filament-echarts/issues",
+        "source": "https://github.com/elemind/filament-echarts"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "elemind",
+            "email": "info@elemind.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "filament/filament": "^4.0",
+        "spatie/laravel-package-tools": "^1.15.0"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.0",
+        "nunomaduro/collision": "^8.0",
+        "orchestra/testbench": "^9.0|^10.0",
+        "pestphp/pest": "^3.0",
+        "pestphp/pest-plugin-arch": "^3.0",
+        "pestphp/pest-plugin-laravel": "^3.0",
+        "pestphp/pest-plugin-livewire": "^3.0",
+        "rector/rector": "^2.0",
+        "spatie/laravel-ray": "^1.26"
+    },
+    "autoload": {
+        "psr-4": {
+            "Elemind\\FilamentECharts\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Elemind\\FilamentECharts\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
+        "lint": "pint",
+        "refactor": "rector",
+        "test": "pest",
+        "test:lint": "pint --test",
+        "test:refactor": "rector --dry-run"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Elemind\\FilamentECharts\\FilamentEChartsServiceProvider"
+            ],
+            "aliases": {
+                "FilamentECharts": "Elemind\\FilamentECharts\\Facades\\FilamentECharts"
+            }
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

@@ -1,0 +1,90 @@
+<?php
+
+namespace $NAMESPACE$;
+
+use Elemind\FilamentECharts\Widgets\EChartWidget;
+
+class $CLASS_NAME$ extends EChartWidget
+{
+    /**
+     * Chart Id
+     */
+    protected static ?string $chartId = '$CHART_ID$';
+
+    /**
+     * Widget Title
+     *
+     * @var string|null
+     */
+    protected static ?string $heading = '$CLASS_NAME$';
+
+    /**
+     * Chart options (series, labels, types, size, animations...)
+     * https://echarts.apache.org/en/option.html
+     *
+     * @return array
+     */
+    protected function getOptions(): array
+    {
+        return [
+               'title' => [
+                   'text' => 'Funnel'
+               ],
+               'tooltip' => [
+                   'trigger' => 'item',
+                   'formatter' => '{a} <br/>{b} : {c}%'
+               ],
+               'toolbox' => [
+                   'feature' => [
+                       'dataView' => ['readOnly' => false],
+                   ]
+               ],
+               'legend' => [
+                   'data' => ['Show', 'Click', 'Visit', 'Inquiry', 'Order']
+               ],
+               'series' => [
+                   [
+                       'name' => 'Funnel',
+                       'type' => 'funnel',
+                       'left' => '10%',
+                       'top' => 60,
+                       'bottom' => 60,
+                       'width' => '80%',
+                       'min' => 0,
+                       'max' => 100,
+                       'minSize' => '0%',
+                       'maxSize' => '100%',
+                       'sort' => 'descending',
+                       'gap' => 2,
+                       'label' => [
+                           'show' => true,
+                           'position' => 'inside'
+                       ],
+                       'labelLine' => [
+                           'length' => 10,
+                           'lineStyle' => [
+                               'width' => 1,
+                               'type' => 'solid'
+                           ]
+                       ],
+                       'itemStyle' => [
+                           'borderColor' => '#fff',
+                           'borderWidth' => 1
+                       ],
+                       'emphasis' => [
+                           'label' => [
+                               'fontSize' => 20
+                           ]
+                       ],
+                       'data' => [
+                           ['value' => 60, 'name' => 'Visit'],
+                           ['value' => 40, 'name' => 'Inquiry'],
+                           ['value' => 20, 'name' => 'Order'],
+                           ['value' => 80, 'name' => 'Click'],
+                           ['value' => 100, 'name' => 'Show']
+                       ]
+                   ]
+               ]
+           ];
+    }
+}
