@@ -6,7 +6,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/elemind/filament-echarts.svg?style=flat-square)](https://packagist.org/packages/elemind/filament-echarts)
 
 Strongly inspired by [Leandro Ferreira’s Apex Charts plugin](https://filamentphp.com/plugins/leandrocfe-apex-charts),
-this plugin delivers Apache ECharts integration for Filament
+this plugin delivers Apache ECharts integration for Filament.
 
 ## Installation
 
