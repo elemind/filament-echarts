@@ -269,18 +269,18 @@ class FilamentEChartsCommand extends Command
 
     private function welcomeMessage(): void
     {
-        //        if ($this->confirm('Would you like to show some love by starring the repo?', true)) {
-        //            if (PHP_OS_FAMILY == 'Darwin') {
-        //                exec('open https://github.com/elemind/filament-echarts');
-        //            }
-        //            if (PHP_OS_FAMILY == 'Windows') {
-        //                exec('start https://github.com/elemind/filament-echarts');
-        //            }
-        //            if (PHP_OS_FAMILY == 'Linux') {
-        //                exec('xdg-open https://github.com/elemind/filament-echarts');
-        //            }
-        //
-        //            $this->line('Thanks! :)');
-        //        }
+        if ($this->confirm('Would you like to show some love by starring the repo?', true)) {
+            if (PHP_OS_FAMILY == 'Darwin') {
+                exec('open https://github.com/elemind/filament-echarts');
+            }
+            if (PHP_OS_FAMILY == 'Windows') {
+                exec('start https://github.com/elemind/filament-echarts');
+            }
+            if (PHP_OS_FAMILY == 'Linux') {
+                exec('xdg-open https://github.com/elemind/filament-echarts');
+            }
+
+            $this->line('Thanks! :)');
+        }
     }
 }
