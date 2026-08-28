@@ -10,19 +10,27 @@ jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest]
-        php: [8.4, 8.3, 8.2]
-        laravel: [12.*, 11.*]
+        php: [8.5, 8.4, 8.3, 8.2]
+        laravel: [13.*, 12.*]
         stability: [prefer-lowest, prefer-stable]
+        exclude:
+          # Laravel 13 requires PHP ^8.3
+          - php: 8.2
+            laravel: 13.*
+          # The declared floor (filament/filament ^4.0) predates Laravel 13
+          # support, which lands in Filament 4.9.3 / 5.4.3.
+          - laravel: 13.*
+            stability: prefer-lowest
         include:
-          - laravel: 12.*
-            testbench: 10.*
+          - laravel: 13.*
+            testbench: 11.*
             carbon: 3.*
             collision: 8.*
-          - laravel: 11.*
-            testbench: 9.*
+          - laravel: 12.*
+            testbench: 10.*
             carbon: 3.*
             collision: 8.*
 
@@ -54,3 +62,14 @@ jobs:
 
       - name: Execute tests
         run: vendor/bin/pest --ci
+
+  tests-passed:
+    name: Tests Passed
+    needs: test
+    if: always()
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check matrix result
+        if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') || contains(needs.*.result, 'skipped') }}
+        run: exit 1
