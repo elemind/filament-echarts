@@ -16,7 +16,7 @@
         "prettier": "^3.5.3"
     },
     "dependencies": {
-        "echarts": "^6.0.0",
+        "echarts": "^6.1.0",
         "lodash.merge": "^4.6.2"
     }
 }
