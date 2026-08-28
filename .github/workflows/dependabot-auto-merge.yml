@@ -18,18 +18,21 @@ jobs:
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
 
-      # npm updates are excluded on purpose: echarts and lodash.merge are bundled
-      # into the committed resources/dist bundle, which has to be rebuilt by hand.
+      # Only github-actions updates are auto-merged. This is an allow list on
+      # purpose: Dependabot names its npm ecosystem "npm_and_yarn", not "npm",
+      # and a deny list silently lets through every ecosystem it fails to name.
+      # npm must stay out: echarts and lodash.merge are bundled into the
+      # committed resources/dist bundle, which has to be rebuilt by hand.
       # See the "Build Assets" workflow.
       - name: Auto-merge Dependabot PRs for semver-minor updates
-        if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-minor' && steps.metadata.outputs.package-ecosystem != 'npm' }}
+        if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-minor' && steps.metadata.outputs.package-ecosystem == 'github-actions' }}
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
       - name: Auto-merge Dependabot PRs for semver-patch updates
-        if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-patch' && steps.metadata.outputs.package-ecosystem != 'npm' }}
+        if: ${{ steps.metadata.outputs.update-type == 'version-update:semver-patch' && steps.metadata.outputs.package-ecosystem == 'github-actions' }}
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
