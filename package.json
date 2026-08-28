@@ -12,7 +12,7 @@
     "author": "tizianozonta@gmail.com",
     "license": "MIT",
     "devDependencies": {
-        "esbuild": "^0.25.5",
+        "esbuild": "^0.28.2",
         "prettier": "^3.5.3"
     },
     "dependencies": {
