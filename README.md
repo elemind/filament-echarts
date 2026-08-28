@@ -2,7 +2,6 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/elemind/filament-echarts.svg?style=flat-square)](https://packagist.org/packages/elemind/filament-echarts)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/elemind/filament-echarts/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/elemind/filament-echarts/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/elemind/filament-echarts/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/elemind/filament-echarts/actions?query=workflow%3A"Fix+PHP+code+styling"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/elemind/filament-echarts.svg?style=flat-square)](https://packagist.org/packages/elemind/filament-echarts)
 
 Strongly inspired by [Leandro Ferreira’s Apex Charts plugin](https://filamentphp.com/plugins/leandrocfe-apex-charts),

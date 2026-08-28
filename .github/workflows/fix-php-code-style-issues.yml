@@ -2,6 +2,7 @@ name: "Fix PHP Code Styling"
 
 on:
   push:
+    branches-ignore: [main]
     paths:
       - '**.php'
 
