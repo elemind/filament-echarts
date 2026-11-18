@@ -29,6 +29,18 @@ class EChartWidget extends Widget implements HasSchemas
 
     protected static ?string $chartId = null;
 
+    /**
+     * Arguments passed as the second parameter of ECharts' `setOption()`.
+     *
+     * Use this to opt into a different merge strategy, for example
+     * `['replaceMerge' => ['series']]` to also remove series that are no
+     * longer returned by `getOptions()`, or `['notMerge' => true]` to
+     * replace the whole option object.
+     *
+     * @var array<string, mixed>
+     */
+    protected static array $setOptionOptions = [];
+
     protected string $view = 'filament-echarts::widgets.echart-widget';
 
     public ?array $options = null;
@@ -68,6 +80,16 @@ class EChartWidget extends Widget implements HasSchemas
         return [];
     }
 
+    /**
+     * Returns the arguments passed as the second parameter of ECharts' `setOption()`.
+     *
+     * @return array<string, mixed>
+     */
+    protected function getSetOptionOptions(): array
+    {
+        return static::$setOptionOptions;
+    }
+
     public function updateOptions(): void
     {
         if ($this->options !== $this->getOptions()) {
@@ -76,7 +98,11 @@ class EChartWidget extends Widget implements HasSchemas
 
             if (! $this->dropdownOpen) {
                 $this
-                    ->dispatch('updateOptions', options: $this->options)
+                    ->dispatch(
+                        'updateOptions',
+                        options: $this->options,
+                        setOptionOpts: $this->getSetOptionOptions(),
+                    )
                     ->self();
             }
         }

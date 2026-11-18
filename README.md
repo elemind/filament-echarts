@@ -262,6 +262,28 @@ protected function getOptions(): array
 }
 ```
 
+## Replacing series instead of merging
+
+ECharts merges the options passed to `setOption()` with the ones already on the chart. This means that a series that is
+no longer returned by `getOptions()` — for example because a filter removed it — stays visible.
+
+To change how updates are applied, override `getSetOptionOptions()` and return the arguments that should be passed as the
+second parameter of ECharts' `setOption()`:
+
+```php
+protected function getSetOptionOptions(): array
+{
+    return ['replaceMerge' => ['series']];
+}
+```
+
+Use `['notMerge' => true]` to replace the whole option object instead. The arguments are only passed on updates, so the
+initial render is unchanged. Widgets that do not override this method keep the default ECharts merge behaviour.
+
+> **Note:** `replaceMerge` replaces the matching components, so the functions passed through `extraJsOptions()`
+> (formatters, for example) are not preserved for the replaced series. If you rely on them, keep the default merge
+> behaviour.
+
 ## Live updating (polling)
 
 By default, chart widgets refresh their data every 5 seconds.

@@ -13,9 +13,9 @@ export default function echarts({
         renderer,
         extraJsOptions,
         init() {
-            this.$wire.$on('updateOptions', ({ options }) => {
+            this.$wire.$on('updateOptions', ({ options, setOptionOpts }) => {
                 this.options = merge(this.options, this.extraJsOptions)
-                this.updateChart(options)
+                this.updateChart(options, setOptionOpts)
             })
 
             Alpine.effect(() => {
@@ -56,8 +56,12 @@ export default function echarts({
             resizeObserver.observe(document.querySelector(this.chartId))
         },
 
-        updateChart(options) {
-            chart.setOption(options)
+        updateChart(options, setOptionOpts = {}) {
+            if (setOptionOpts && Object.keys(setOptionOpts).length > 0) {
+                chart.setOption(options, setOptionOpts)
+            } else {
+                chart.setOption(options)
+            }
         },
     }
 }
