@@ -12,4 +12,10 @@ parameters:
     checkModelProperties: true
     ignoreErrors:
         - '#Access to an undefined property Elemind\\FilamentECharts\\Widgets\\EChartWidget::\$form.#'
+        # Larastan only reports this for some dependency versions; CI has no
+        # lock file, so a strict inline ignore fails whenever it goes unreported.
+        -
+            identifier: property.defaultValue
+            path: src/Widgets/EChartWidget.php
+            reportUnmatched: false
 
