@@ -45,7 +45,7 @@ The whole plugin is one widget class plus a JS Alpine component; everything else
 
 Subclasses only implement `getOptions(): array`, which returns a raw ECharts option array (PHP array → JSON → `chart.setOption`).
 
-**Update flow.** `mount()` fills the filter schema and caches `$this->options`. `updateOptions()` recomputes `getOptions()`, and only if the result differs *and* the filter dropdown is closed (`$dropdownOpen`) does it `dispatch('updateOptions', ...)->self()`. Suppressing dispatch while the dropdown is open prevents Livewire re-renders from closing it mid-edit — `$dropdownOpen` is synced back from Alpine via `x-init="$watch(...)"` in the chart component, and the `echarts-dropdown` browser event resets it after submit/reset.
+**Update flow.** `mount()` fills the filter schema and caches `$this->options`. `updateOptions()` recomputes `getOptions()`, and only if the result differs *and* `$dropdownOpen` is false does it `dispatch('updateOptions', ...)->self()`. `$dropdownOpen` defaults to `false` so polling works out of the box; set it to `true` from a widget to pause chart updates while a filters dropdown is open. The Alpine `$watch` and the `echarts-dropdown` event that would sync it automatically are only wired to the unused `filter-form` component.
 
 **JS side — `resources/js/index.js`** exports the `echarts()` Alpine component registered as a Filament `AlpineComponent` asset (lazily loaded via `x-load` / `FilamentAsset::getAlpineComponentSrc`). It listens for the `updateOptions` Livewire event, `lodash.merge`s `extraJsOptions` (a `RawJs` blob, the only way to pass real JS functions such as axis formatters) over the PHP options, and drives one ECharts instance wrapped in a `ResizeObserver`.
 
