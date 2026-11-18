@@ -29,7 +29,6 @@ class EChartWidget extends Widget implements HasSchemas
 
     protected static ?string $chartId = null;
 
-    // @phpstan-ignore-next-line
     protected string $view = 'filament-echarts::widgets.echart-widget';
 
     public ?array $options = null;
