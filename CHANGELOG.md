@@ -6,6 +6,7 @@ All notable changes to `filament-echarts` will be documented in this file.
 
 - Fix polling not updating the chart because `dropdownOpen` defaulted to `true`
 - Fix the polling documentation to use the non-static `$pollingInterval` property required by Filament 4 and 5
+- Add `getSetOptionOptions()` so widgets can pass arguments such as `replaceMerge` to ECharts' `setOption()`, allowing series that disappear from the options to be removed from the chart
 
 ## 1.1.1 - 2026-08-28
 
