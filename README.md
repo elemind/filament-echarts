@@ -269,14 +269,17 @@ By default, chart widgets refresh their data every 5 seconds.
 To customize this, you may override the `$pollingInterval` property on the class to a new interval:
 
 ```php
-protected static ?string $pollingInterval = '10s';
+protected ?string $pollingInterval = '10s';
 ```
 
 Alternatively, you may disable polling altogether:
 
 ```php
-protected static ?string $pollingInterval = null;
+protected ?string $pollingInterval = null;
 ```
+
+The property is an instance property (not `static`) in Filament 4 and 5, matching the
+`CanPoll` trait shipped by Filament.
 
 ## Defer loading
 

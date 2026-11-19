@@ -2,6 +2,11 @@
 
 All notable changes to `filament-echarts` will be documented in this file.
 
+## Unreleased
+
+- Fix polling not updating the chart because `dropdownOpen` defaulted to `true`
+- Fix the polling documentation to use the non-static `$pollingInterval` property required by Filament 4 and 5
+
 ## 1.1.1 - 2026-08-28
 
 - Update the bundled Apache ECharts from 6.0.0 to 6.1.0

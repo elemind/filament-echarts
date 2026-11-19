@@ -13,7 +13,14 @@ trait CanFilter
 
     public ?string $filter = null;
 
-    public bool $dropdownOpen = true;
+    /**
+     * Whether the filters dropdown is open.
+     *
+     * While this is `true`, polling and filter changes are not dispatched to the chart.
+     * It defaults to `false` so that polling works out of the box; set it to `true`
+     * from your widget if you need to pause chart updates while the dropdown is open.
+     */
+    public bool $dropdownOpen = false;
 
     /**
      * Retrieves the simple filter options.
